@@ -1,0 +1,2 @@
+1. Mock entire getTask for Integration test - it should produce false
+2. Mock curl for unit testing getTask

@@ -1,0 +1,12 @@
+1. Write script demonstrate
+2. Install BATS and asserts
+3. Make a simple e2e test
+4. Run test - bats script.bast
+
+
+This is an example of something that is difficult to test
+
+1) We have external dependencies - curl and external service that we need to mock
+2) Our code is not really easily testable (by unit tests), we need to refactor first
+3) We save response to a file, that is a runtime dependency too
+4) We can bats test it, by defintion bats tests are called the same as script but with .bast extension

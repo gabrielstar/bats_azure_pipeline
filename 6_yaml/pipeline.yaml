@@ -1,0 +1,15 @@
+name: $(BuildID)
+trigger: none
+pool:
+  vmImage: 'ubuntu-16.04'
+variables:
+  $(System.DefaultWorkingDirectory)/6_yaml:
+jobs:
+  - job: run_script_with_tests
+    steps:
+      - task: ShellScript@2
+        condition: always()
+        displayName: Run script
+        inputs:
+          scriptPath: $(base_dir)/script.sh
+          args: 1 file.txt
