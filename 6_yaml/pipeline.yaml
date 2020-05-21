@@ -8,8 +8,13 @@ variables:
 jobs:
   - job: run_script_with_tests
     steps:
+      - task: ShellScript@2
+        displayName: Install BATS
+        inputs:
+          scriptPath: $(install_script_dir)/installBATS.sh
+
       - bash: |
-          sh $(install_script_dir)/installBATS.sh
+          #sh $(install_script_dir)/installBATS.sh
           bats $(base_dir)/script.bats
         displayName: Test script
 
