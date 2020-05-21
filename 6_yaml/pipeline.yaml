@@ -4,12 +4,13 @@ pool:
   vmImage: 'ubuntu-16.04'
 variables:
   base_dir: $(System.DefaultWorkingDirectory)/6_yaml
+  install_script_dir: $(System.DefaultWorkingDirectory)/1_base
 jobs:
   - job: run_script_with_tests
     steps:
       - bash: |
-          sh $(base_dir)/1_base/installBATS.sh
-          bats $(base_dir)/script.bat
+          sh $(install_script_dir)/installBATS.sh
+          bats $(base_dir)/script.bats
         displayName: Test script
 
       - task: ShellScript@2
