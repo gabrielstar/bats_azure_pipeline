@@ -7,8 +7,12 @@ variables:
 jobs:
   - job: run_script_with_tests
     steps:
+      - bash: |
+          sh $(base_dir)/1_base/installBATS.sh
+          bats $(base_dir)/script.bat
+        displayName: Test script
+
       - task: ShellScript@2
-        condition: always()
         displayName: Run script
         inputs:
           scriptPath: $(base_dir)/script.sh
