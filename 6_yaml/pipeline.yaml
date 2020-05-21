@@ -14,7 +14,7 @@ jobs:
           scriptPath: $(install_script_dir)/installBATS.sh
 
       - bash: |
-          /home/vsts/.local/bin/bats $(base_dir)/script.bats
+          cd $(base_dir) && /home/vsts/.local/bin/bats $(base_dir)/script.bats
         displayName: Test script
 
       - task: ShellScript@2
