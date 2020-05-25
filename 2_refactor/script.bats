@@ -3,8 +3,7 @@
 load $HOME/test/'test_helper/batsassert/load.bash'
 load $HOME/test/'test_helper/batscore/load.bash'
 
-#e2e test
-@test "fileContainsCorrectId" {
+@test "E2E: fileContainsCorrectStatus" {
   taskId=1
   fileName=file.txt
   run sh script.sh $taskId $fileName

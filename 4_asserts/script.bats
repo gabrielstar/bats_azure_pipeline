@@ -11,27 +11,28 @@ function setup(){
 function teardown(){
   rm "$testFile"
 }
-#e2e test
-@test "fileContainsCorrectId" {
-  taskId=1
-  run run_main $taskId "$testFile"
-  assert_success
-  run cat "$testFile"
-  assert_output "false"
-}
 
 #unit test - 2 IFs, 2 test
-@test "saveResponseWorksCorrectlyOnFalseStatus" {
+@test "saveResponseSavesStatusToFileOnFalse" {
   run saveResponse "$testFile" false
   assert_output --partial "is correct"
   run cat f.txt
   assert_output "false"
 }
 
-@test "fileIsEmptyOnIncorrectResponse" {
+@test "saveResponseFileEmptyOnNonFalseStatus" {
   run saveResponse "$testFile" completed
   assert_output --partial "is not correct"
   run cat "$testFile"
   refute_output "false"
   assert_output ""
+}
+
+#e2e test
+@test "E2E: fileContainsCorrectStatus" {
+  taskId=1
+  run run_main $taskId "$testFile"
+  assert_success
+  run cat "$testFile"
+  assert_output "false"
 }

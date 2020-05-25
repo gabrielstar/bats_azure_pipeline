@@ -2,7 +2,7 @@
 
 function getTask(){
     local taskId=$1
-    #make a call - curl is a dependency - perhaps we can treat it as external tool
+    #make a call
     response=$(curl -X GET https://jsonplaceholder.typicode.com/todos/"$taskId")
     echo $response
 
@@ -27,7 +27,7 @@ function run_main(){
   local taskId=$1
   local fileName=$2
   getTask "$taskId"
-  saveResponse "$fileName" "$status" #whichever parameteres we need externally
+  saveResponse "$fileName" "$status"
 }
 
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then

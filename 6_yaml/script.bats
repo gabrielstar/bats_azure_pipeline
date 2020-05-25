@@ -12,15 +12,9 @@ function setup(){
 function teardown(){
   rm "$testFile"
 }
-#e2e test
-@test "fileContainsCorrectId" {
-  run run_main $taskId "$testFile"
-  assert_success
-  run cat "$testFile"
-  assert_output "false"
-}
-#integration test, mocked?
-@test "fileContainsCorrectIdWhenGetTaskMocked" {
+
+#integration test, getTask mocked but we run entire script
+@test "IT: fileContainsCorrectStatus" {
   function getTask(){
     status=false
   }
@@ -50,17 +44,25 @@ function teardown(){
   unset curl
 }
 #unit test - 2 IFs, 2 test
-@test "saveResponseWorksCorrectlyOnFalseStatus" {
+@test "saveResponseSavesStatusToFileOnFalse" {
   run saveResponse "$testFile" false
   assert_output --partial "is correct"
   run cat f.txt
   assert_output "false"
 }
 
-@test "fileIsEmptyOnIncorrectResponse" {
+@test "saveResponseFileEmptyOnNonFalseStatus" {
   run saveResponse "$testFile" completed
   assert_output --partial "is not correct"
   run cat "$testFile"
   refute_output "false"
   assert_output ""
+}
+
+#e2e test
+@test "E2E: fileContainsCorrectStatus" {
+  run run_main $taskId "$testFile"
+  assert_success
+  run cat "$testFile"
+  assert_output "false"
 }

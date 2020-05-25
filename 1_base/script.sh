@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-#make a call - curl is a dependency - perhaps we can treat it as external tool
+#make a call
 response=$(curl -X GET https://jsonplaceholder.typicode.com/todos/1)
 echo $response
 
