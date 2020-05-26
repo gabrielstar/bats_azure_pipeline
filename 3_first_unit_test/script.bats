@@ -20,7 +20,7 @@ function teardown(){
 
 @test "saveResponseFileEmptyOnNonFalseStatus" {
   source script.sh
-  run saveResponse f.txt completed
+  run saveResponse f.txt true
   run cat f.txt
   [ "$output" == "" ]
 }

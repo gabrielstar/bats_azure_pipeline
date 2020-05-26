@@ -21,7 +21,7 @@ function teardown(){
 }
 
 @test "saveResponseFileEmptyOnNonFalseStatus" {
-  run saveResponse "$testFile" completed
+  run saveResponse "$testFile" true
   assert_output --partial "is not correct"
   run cat "$testFile"
   refute_output "false"
